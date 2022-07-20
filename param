@@ -1,0 +1,30 @@
+pipeline {
+    agent any 
+    parameters {
+        choice(name: 'VERSIION', choice: ['1.1.0', '1.2.0', '1.3.0'], description: '')
+        booleanParam(name: 'executeTests', default: true, description: '')
+    }
+    stages {
+        stage("buid") {
+            steps {
+                echo 'buiding application'
+            }
+        }
+        Stage("test") {
+            when {
+                expression {
+                    URLSearchParams.executeTests
+                }
+            }
+            steps {
+                 echo 'testing application'
+            }
+        }
+        Stage("deploy") {
+            steps {
+                echo 'deploying application'
+                echo "deploying version ${VERSION}"
+            }
+        }
+    }
+}
