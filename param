@@ -10,7 +10,7 @@ pipeline {
                 echo 'buiding application'
             }
         }
-        Stage("test") {
+        stage("test") {
             when {
                 expression {
                     URLSearchParams.executeTests
@@ -20,7 +20,7 @@ pipeline {
                  echo 'testing application'
             }
         }
-        Stage("deploy") {
+        stage("deploy") {
             steps {
                 echo 'deploying application'
                 echo "deploying version ${VERSION}"
